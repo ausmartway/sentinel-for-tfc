@@ -1,0 +1,31 @@
+# This policy uses the tfplan/v2 import to restrict oauth_client created by tfe_oauth_client to those
+# in an allowed list.
+
+import "tfplan-functions" as plan
+
+# Standard strings import
+import "strings"
+
+# List of allowed providers
+allowed_list = ["github"]
+
+# Get all tfe_oauth_client resources
+allOauthClients = plan.find_resources("tfe_oauth_client")
+
+# Filter to tfe_oauth_client instances with violations
+# Warnings will be printed for all violations since the last parameter is true
+violatingOauthClients = plan.filter_attribute_not_in_list(allOauthClients,
+                        "service_provider", allowed_list, false)
+
+# Print any violations
+prohibitedOauthClientsCount = length(violatingOauthClients["messages"])
+if prohibitedOauthClientsCount > 0 {
+  plan.print_violations( violatingOauthClients["messages"], "tfe_oauth_client")
+}
+
+# Main rule
+violations = prohibitedOauthClientsCount 
+
+main = rule {
+  violations is 0
+}

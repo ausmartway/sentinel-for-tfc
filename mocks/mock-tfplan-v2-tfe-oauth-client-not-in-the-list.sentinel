@@ -1,0 +1,224 @@
+terraform_version = "1.0.7"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"tfe_oauth_client.test": {
+			"address":        "tfe_oauth_client.test",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "test",
+			"provider_name":  "registry.terraform.io/hashicorp/tfe",
+			"tainted":        false,
+			"type":           "tfe_oauth_client",
+			"values": {
+				"api_url":          "https://gitlab.com/api/v4",
+				"http_url":         "https://gitlab.com",
+				"oauth_token":      "REDACTED_SENSITIVE",
+				"organization":     "yulei",
+				"private_key":      null,
+				"service_provider": "gitlab_hosted",
+			},
+		},
+	},
+}
+
+variables = {
+	"gitlab_token": {
+		"name":  "gitlab_token",
+		"value": "ffNM9bCx8dmwGZjerH5s",
+	},
+}
+
+resource_changes = {
+	"tfe_oauth_client.test": {
+		"address": "tfe_oauth_client.test",
+		"change": {
+			"actions": [
+				"delete",
+				"create",
+			],
+			"after": {
+				"api_url":          "https://gitlab.com/api/v4",
+				"http_url":         "https://gitlab.com",
+				"oauth_token":      "REDACTED_SENSITIVE",
+				"organization":     "yulei",
+				"private_key":      null,
+				"service_provider": "gitlab_hosted",
+			},
+			"after_unknown": {
+				"id":             true,
+				"oauth_token_id": true,
+			},
+			"before": {
+				"api_url":          "https://api.github.com",
+				"http_url":         "https://github.com",
+				"id":               "oc-ZFbzfQX7Krd5iR2J",
+				"oauth_token":      "REDACTED_SENSITIVE",
+				"oauth_token_id":   "ot-nQ1sGUM5ZFQUAp1w",
+				"organization":     "yulei",
+				"private_key":      null,
+				"service_provider": "github",
+			},
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "test",
+		"provider_name":  "registry.terraform.io/hashicorp/tfe",
+		"type":           "tfe_oauth_client",
+	},
+}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"tfe": {
+				"name":               "tfe",
+				"version_constraint": ">= 0.26.1",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "tfe_oauth_client.test",
+					"expressions": {
+						"api_url": {
+							"constant_value": "https://gitlab.com/api/v4",
+						},
+						"http_url": {
+							"constant_value": "https://gitlab.com",
+						},
+						"oauth_token": {
+							"references": [
+								"var.gitlab_token",
+							],
+						},
+						"organization": {
+							"constant_value": "yulei",
+						},
+						"service_provider": {
+							"constant_value": "gitlab_hosted",
+						},
+					},
+					"mode":                "managed",
+					"name":                "test",
+					"provider_config_key": "tfe",
+					"schema_version":      0,
+					"type":                "tfe_oauth_client",
+				},
+			],
+			"variables": {
+				"gitlab_token": {},
+			},
+		},
+	},
+	"format_version": "0.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":          "tfe_oauth_client.test",
+					"mode":             "managed",
+					"name":             "test",
+					"provider_name":    "registry.terraform.io/hashicorp/tfe",
+					"schema_version":   0,
+					"sensitive_values": {},
+					"type":             "tfe_oauth_client",
+					"values": {
+						"api_url":          "https://gitlab.com/api/v4",
+						"http_url":         "https://gitlab.com",
+						"oauth_token":      "REDACTED_SENSITIVE",
+						"organization":     "yulei",
+						"private_key":      null,
+						"service_provider": "gitlab_hosted",
+					},
+				},
+			],
+		},
+	},
+	"prior_state": {
+		"format_version":    "0.2",
+		"terraform_version": "1.0.7",
+		"values": {
+			"root_module": {
+				"resources": [
+					{
+						"address":          "tfe_oauth_client.test",
+						"mode":             "managed",
+						"name":             "test",
+						"provider_name":    "registry.terraform.io/hashicorp/tfe",
+						"schema_version":   0,
+						"sensitive_values": {},
+						"type":             "tfe_oauth_client",
+						"values": {
+							"api_url":          "https://api.github.com",
+							"http_url":         "https://github.com",
+							"id":               "oc-ZFbzfQX7Krd5iR2J",
+							"oauth_token":      "REDACTED_SENSITIVE",
+							"oauth_token_id":   "ot-nQ1sGUM5ZFQUAp1w",
+							"organization":     "yulei",
+							"private_key":      null,
+							"service_provider": "github",
+						},
+					},
+				],
+			},
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "tfe_oauth_client.test",
+			"change": {
+				"actions": [
+					"delete",
+					"create",
+				],
+				"after": {
+					"api_url":          "https://gitlab.com/api/v4",
+					"http_url":         "https://gitlab.com",
+					"oauth_token":      "REDACTED_SENSITIVE",
+					"organization":     "yulei",
+					"private_key":      null,
+					"service_provider": "gitlab_hosted",
+				},
+				"after_sensitive": {
+					"oauth_token": true,
+				},
+				"after_unknown": {
+					"id":             true,
+					"oauth_token_id": true,
+				},
+				"before": {
+					"api_url":          "https://api.github.com",
+					"http_url":         "https://github.com",
+					"id":               "oc-ZFbzfQX7Krd5iR2J",
+					"oauth_token":      "REDACTED_SENSITIVE",
+					"oauth_token_id":   "ot-nQ1sGUM5ZFQUAp1w",
+					"organization":     "yulei",
+					"private_key":      null,
+					"service_provider": "github",
+				},
+				"before_sensitive": {
+					"oauth_token": true,
+				},
+			},
+			"mode":          "managed",
+			"name":          "test",
+			"provider_name": "registry.terraform.io/hashicorp/tfe",
+			"type":          "tfe_oauth_client",
+		},
+	],
+	"terraform_version": "1.0.7",
+	"variables": {
+		"gitlab_token": {
+			"value": "ffNM9bCx8dmwGZjerH5s",
+		},
+	},
+}

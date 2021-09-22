@@ -1,0 +1,181 @@
+terraform_version = "1.0.7"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"tfe_oauth_client.github": {
+			"address":        "tfe_oauth_client.github",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "github",
+			"provider_name":  "registry.terraform.io/hashicorp/tfe",
+			"tainted":        false,
+			"type":           "tfe_oauth_client",
+			"values": {
+				"api_url":          "https://api.github.com",
+				"http_url":         "https://github.com",
+				"oauth_token":      "REDACTED_SENSITIVE",
+				"organization":     "yulei",
+				"private_key":      null,
+				"service_provider": "github",
+			},
+		},
+	},
+}
+
+variables = {
+	"github_token": {
+		"name":  "github_token",
+		"value": "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",
+	},
+	"gitlab_token": {
+		"name":  "gitlab_token",
+		"value": "ffNM9bCx8dmwGZjerH5s",
+	},
+}
+
+resource_changes = {
+	"tfe_oauth_client.github": {
+		"address": "tfe_oauth_client.github",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"api_url":          "https://api.github.com",
+				"http_url":         "https://github.com",
+				"oauth_token":      "REDACTED_SENSITIVE",
+				"organization":     "yulei",
+				"private_key":      null,
+				"service_provider": "github",
+			},
+			"after_unknown": {
+				"id":             true,
+				"oauth_token_id": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "github",
+		"provider_name":  "registry.terraform.io/hashicorp/tfe",
+		"type":           "tfe_oauth_client",
+	},
+}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"tfe": {
+				"name":               "tfe",
+				"version_constraint": ">= 0.26.1",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "tfe_oauth_client.github",
+					"expressions": {
+						"api_url": {
+							"constant_value": "https://api.github.com",
+						},
+						"http_url": {
+							"constant_value": "https://github.com",
+						},
+						"oauth_token": {
+							"references": [
+								"var.github_token",
+							],
+						},
+						"organization": {
+							"constant_value": "yulei",
+						},
+						"service_provider": {
+							"constant_value": "github",
+						},
+					},
+					"mode":                "managed",
+					"name":                "github",
+					"provider_config_key": "tfe",
+					"schema_version":      0,
+					"type":                "tfe_oauth_client",
+				},
+			],
+			"variables": {
+				"github_token": {},
+				"gitlab_token": {},
+			},
+		},
+	},
+	"format_version": "0.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":          "tfe_oauth_client.github",
+					"mode":             "managed",
+					"name":             "github",
+					"provider_name":    "registry.terraform.io/hashicorp/tfe",
+					"schema_version":   0,
+					"sensitive_values": {},
+					"type":             "tfe_oauth_client",
+					"values": {
+						"api_url":          "https://api.github.com",
+						"http_url":         "https://github.com",
+						"oauth_token":      "REDACTED_SENSITIVE",
+						"organization":     "yulei",
+						"private_key":      null,
+						"service_provider": "github",
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "tfe_oauth_client.github",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"api_url":          "https://api.github.com",
+					"http_url":         "https://github.com",
+					"oauth_token":      "REDACTED_SENSITIVE",
+					"organization":     "yulei",
+					"private_key":      null,
+					"service_provider": "github",
+				},
+				"after_sensitive": {
+					"oauth_token": true,
+				},
+				"after_unknown": {
+					"id":             true,
+					"oauth_token_id": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "github",
+			"provider_name": "registry.terraform.io/hashicorp/tfe",
+			"type":          "tfe_oauth_client",
+		},
+	],
+	"terraform_version": "1.0.7",
+	"variables": {
+		"github_token": {
+			"value": "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",
+		},
+		"gitlab_token": {
+			"value": "ffNM9bCx8dmwGZjerH5s",
+		},
+	},
+}
