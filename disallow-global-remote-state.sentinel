@@ -1,0 +1,24 @@
+##Global remote state opens the statefile access to all workspaces in one orgnization. This is dangerouse and should be dealt with consideration.
+import "tfplan-functions" as plan
+
+# Get all tfe_workspaces resources
+allWorkspaces = plan.find_resources("tfe_workspace")
+
+violatingWorkspaces = plan.filter_attribute_is_value(allWorkspaces,"global_remote_state", true , false )
+
+# Print any violations
+prohibitedWorkspaceCount = length(violatingWorkspaces["messages"])
+
+if prohibitedWorkspaceCount > 0 {
+  plan.print_violations( violatingWorkspaces["messages"], "tfe_workspace")
+}
+
+# Main rule
+violations = prohibitedWorkspaceCount 
+
+main = rule {
+  violations is 0
+}
+
+
+
