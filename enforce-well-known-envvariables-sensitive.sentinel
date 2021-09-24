@@ -1,0 +1,169 @@
+##tfe_variables that's not senstive can be read by anyone with access, this policies enforce well known enviroment variables to be sensitive.
+
+import "tfplan/v2" as tfplan
+
+# Get all tfe_variable resources
+
+wellKnownEnvVariablesList = [
+    //aws
+    "AWS_SECRET_ACCESS_KEY",
+    "AWS_SESSION_TOKEN",
+    
+    //gcp
+    "GOOGLE_CREDENTIALS",
+    "GOOGLE_APPLICATION_CREDENTIALS",
+    
+    //azure
+    "ARM_CLIENT_SECRET",
+    "ARM_CLIENT_CERTIFICATE_PASSWORD",
+    "ARM_CLIENT_CERTIFICATE",
+    
+    //alicloud
+    "ALICLOUD_SECRET_KEY",
+    "ALICLOUD_SECURITY_TOKEN",
+    "ALICLOUD_SHARED_CREDENTIALS_FILE",
+
+    //TencetCloud
+    "TENCENTCLOUD_SECRET_KEY",
+    "TENCENTCLOUD_SECURITY_TOKEN",
+
+    //DigitalOcean
+    "DIGITALOCEAN_ACCESS_TOKEN",
+    "DIGITALOCEAN_TOKEN",
+    "SPACES_SECRET_ACCESS_KEY",
+    
+    //general
+    "TOKEN",
+    
+    //vault
+    "VAULT_TOKEN",
+    
+    //terraform enterprise/cloud
+    "TFE_TOKEN",
+    
+    //Consul
+    "CONSUL_HTTP_TOKEN",
+    "CONSUL_TOKEN",
+
+    //Nomad
+    "NOMAD_HTTP_AUTH",
+    "NOMAD_CLIENT_CERT",
+    "NOMAD_CLIENT_KEY",
+    "NOMAD_TOKEN",
+
+    //Boundary
+    "BOUNDARY_TOKEN",
+
+    //Hashicorp Cloud Platform
+    "HCP_CLIENT_SECRET",
+
+    
+    //k8s
+    "KUBE_PASSWORD",
+    "KUBE_TOKEN",
+    "KUBE_CLIENT_CERT_DATA",
+    "KUBE_CLIENT_KEY_DATA",
+    "KUBE_CLUSTER_CA_CERT_DATA",
+    
+    //Helm
+    "HELM_DRIVER_SQL_CONNECTION_STRING",
+
+    //vsphere
+    "VSPHERE_PASSWORD",
+
+    //vRA
+    "vRA_ACCESS_TOKEN",
+    "vRA_REFRESH_TOKEN",
+
+    //Microsoft Active Directory
+    "AD_PASSWORD",
+
+    //Aritfactory
+    "ARITFACTORY_PASSWORD",
+    "ARTIFACTORY_ACCESS_TOKEN",
+    "ARTIFACTORY_API_KEY",
+
+    //Azure DevOps
+    "AZDO_PERSONAL_ACCESS_TOKEN",
+
+    //Bigip F5
+    "BIGIP_PASSWORD",
+
+    //Cloudflare
+    "CLOUDFLARE_API_KEY",
+    "CLOUDFLARE_API_TOKEN",
+    "CLOUDFLARE_API_USER_SERVICE_KEY",
+
+    //Databricks
+    "DATABRICKS_TOKEN",
+    "DATABRICKS_PASSWORD",
+    "DATABRICKS_AZURE_CLIENT_SECRET",
+
+    //Datadog
+    "DD_API_KEY",
+    "DD_APP_KEY",
+
+    //Gitlab
+    "GITLAB_TOKEN",
+
+    //Github
+    "GITHUB_TOKEN",
+    "GITHUB_APP_PEM_FILE",
+
+    //Grafana
+    "GRAFANA_AUTH",
+    "GRAFANA_SM_ACCESS_TOKEN",
+    "GRAFANA_TLS_KEY",
+    "GRAFANA_TLS_CER",
+    "GRAFANA_CLOUD_API_KEY",
+
+    //MongoDBAtlas
+    "MONGODB_ATLAS_PRIVATE_KEY",
+
+
+    //Newrelic
+    "NEW_RELIC_API_KEY",
+    "NEW_RELIC_INSIGHTS_INSERT_KEY",
+    "NEW_RELIC_API_CACERT",
+
+    //Rancher
+    "RANCHER_ACCESS_KEY",
+    "RANCHER_SECRET_KEY",
+    "RANCHER_TOKEN_KEY",
+
+    //SignalFX
+    "SFX_AUTH_TOKEN",
+
+    //Splunk
+    "SPLUNK_PASSWORD",
+    "SPLUNK_AUTH_TOKEN",
+
+    //Sumologic
+    "SUMOLOGIC_ACCESSKEY",
+
+    //1Password
+    "OP_CONNECT_TOKEN",
+]
+
+
+violatingVariables = filter tfplan.resource_changes as _, rc {
+	rc.type is "tfe_variable" and
+		rc.mode is "managed" and
+		(rc.change.actions in ["create","update"]) and
+		(rc.change.after.key in wellKnownEnvVariablesList) and 
+        (rc.change.after.sensitive is false )
+}
+
+for violatingVariables as address, bucket {
+	print("tfe_variable " + address + "is in the list of well known enviroment variable that contains secret, but it is not set to sensitive.")
+}
+
+# Main rule
+violations = length(violatingVariables) 
+
+main = rule {
+  violations is 0
+}
+
+
+
