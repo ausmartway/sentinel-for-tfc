@@ -8,16 +8,16 @@ import "strings"
 
 # List of allowed providers
 allowed_list = ["autoinject",
-                "aws",
-                "azure",
-                "gcp",
-                "customerfacing",
-                "internal",
-                "management",
-                "sentinel",
-                "testing",
-                "tfc",
-                "vault"]
+	"aws",
+	"azure",
+	"gcp",
+	"customerfacing",
+	"internal",
+	"management",
+	"sentinel",
+	"testing",
+	"tfc",
+	"vault"]
 
 # Get all tfe_oauth_client resources
 allWorkspaces = plan.find_resources("tfe_workspace")
@@ -25,16 +25,17 @@ allWorkspaces = plan.find_resources("tfe_workspace")
 # Filter to tfe_workspace instances with violations
 # Warnings will be printed for all violations since the last parameter is true
 violatingWorkspaces = plan.filter_attribute_contains_items_not_in_list(allWorkspaces,
-                        "tag_names", allowed_list, true)
+	"tag_names", allowed_list, true)
+
 # Print any violations
 prohibitedWorkspaceCount = length(violatingWorkspaces["messages"])
 if prohibitedWorkspaceCount > 0 {
-  plan.print_violations( violatingWorkspaces["messages"], "tfe_workspace")
+	plan.print_violations(violatingWorkspaces["messages"], "tfe_workspace")
 }
 
 # Main rule
-violations = prohibitedWorkspaceCount 
+violations = prohibitedWorkspaceCount
 
 main = rule {
-  violations is 0
+	violations is 0
 }
