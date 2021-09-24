@@ -12,11 +12,6 @@ module "tfstate-functions" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-guides/master/governance/third-generation/common-functions/tfstate-functions/tfstate-functions.sentinel"
 }
 
-
-module "tfplan-functions" {
-  source = "https://raw.githubusercontent.com/hashicorp/terraform-guides/master/governance/third-generation/common-functions/tfplan-functions/tfplan-functions.sentinel"
-}
-
 module "tfrun-functions" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-guides/master/governance/third-generation/common-functions/tfrun-functions/tfrun-functions.sentinel"
 }
@@ -41,7 +36,7 @@ policy "disallow-global-remote-state" {
 policy "enforce-well-known-envvariables-sensitive" {
    source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/enforce-well-known-envvariables-sensitive.sentinel"
  
-    enforcement_level = "soft-mandatory"
+    enforcement_level = "hard-mandatory"
 }
 
 
