@@ -22,24 +22,24 @@ module "tfrun-functions" {
 }
 
 policy "allow-whitelisted-tags" {
-  source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/allow-whitelisted-tags.sentinel"
+  source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/allow-whitelisted-tags.sentinel"
     enforcement_level = "soft-mandatory"
 }
 
 policy "allow-whitelisted-vcs-providers" {
-  source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/allow-whitelisted-vcs-provider.sentinel"
+  source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/allow-whitelisted-vcs-providers.sentinel"
     enforcement_level = "soft-mandatory"
 }
 
 
 policy "disallow-global-remote-state" {
-   source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/disallow-global-remote-state.sentinel"
+   source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/disallow-global-remote-state.sentinel"
  
     enforcement_level = "soft-mandatory"
 }
 
 policy "enforce-well-known-envvariables-sensitive" {
-   source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/enforce-well-known-envvariables-sensitive.sentinel"
+   source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/enforce-well-known-envvariables-sensitive.sentinel"
  
     enforcement_level = "soft-mandatory"
 }
