@@ -1,0 +1,20 @@
+import "tfplan/v2" as tfplan
+
+violatingVariables = filter tfplan.resource_changes as _, rc {
+	rc.type is "tfe_variable" and
+		rc.mode is "managed" and
+		(rc.change.actions in ["create", "update"]) and
+		(rc.change.after.description in ["",null])
+}
+
+
+for violatingVariables as address, bucket {
+	print("tfe_variable " + address + "'s description is not set. This is not a good practice.")
+}
+
+# Main rule
+violations = length(violatingVariables)
+
+main = rule {
+	violations is 0
+}

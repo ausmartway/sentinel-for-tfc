@@ -18,25 +18,25 @@ module "tfrun-functions" {
 
 policy "allow-whitelisted-tags" {
   source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/allow-whitelisted-tags.sentinel"
-    enforcement_level = "soft-mandatory"
+    enforcement_level = "advisory"
 }
 
 policy "allow-whitelisted-vcs-providers" {
   source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/allow-whitelisted-vcs-providers.sentinel"
-    enforcement_level = "soft-mandatory"
+    enforcement_level = "advisory"
 }
 
 
 policy "disallow-global-remote-state" {
    source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/disallow-global-remote-state.sentinel"
  
-    enforcement_level = "soft-mandatory"
+    enforcement_level = "advisory"
 }
 
 policy "enforce-well-known-envvariables-sensitive" {
    source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/enforce-well-known-envvariables-sensitive.sentinel"
  
-    enforcement_level = "hard-mandatory"
+    enforcement_level = "advisory"
 }
 
 
