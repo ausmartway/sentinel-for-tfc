@@ -1,4 +1,4 @@
-# This policy uses the tfplan/v2 import to restrict oauth_client created by tfe_oauth_client to those
+# This policy uses the tfplan/v2 import to restrict vcs connections created by tfe_oauth_client to those
 # in an allowed list.
 
 import "tfplan-functions" as plan
