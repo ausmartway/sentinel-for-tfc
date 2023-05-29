@@ -1,5 +1,8 @@
 # sentinel-for-tfc
 
+Test Status:
+![sentinel test status:](https://github.com/ausmartway/sentinel-for-tfc/workflows/sentinel/badge.svg)
+
 ## TLDR
 
 This is a policy set of Sentinel that governs Terraform Cloud/Enterprise.
@@ -9,5 +12,3 @@ This is a policy set of Sentinel that governs Terraform Cloud/Enterprise.
 As the most popular Infrastructure as Code tool(or one of), Terraform helps in configuring, provisioning, and managing the infrastructure accross multi-clouds. Terraform is not only just for infrastructures, it can be used as Configuration as Code to manage the configuration of many software solutions. This includes Terraform Cloud/Enterprise itslef.
 
 Terraform Cloud/Enterprise is a secure/reliable and governed IaC pipeline that helps teams use Terraform cli all together. Each Terraform Cloud workspace can be seen as a pipeline job. A pull request from VCS trigger a terraform plan, which then triggers a policy check for security or operational compliance check. Passing all checks is good indication that the pull request is compliant.
-
-
