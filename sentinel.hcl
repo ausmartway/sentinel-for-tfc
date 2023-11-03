@@ -39,4 +39,7 @@ policy "enforce-well-known-envvariables-sensitive" {
     enforcement_level = "advisory"
 }
 
-
+policy "enforce-minimal-terraform-versions" {
+  source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/enforce-minimal-terraform-versions.sentinel"
+    enforcement_level = "advisory"
+}
