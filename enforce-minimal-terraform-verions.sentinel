@@ -1,15 +1,21 @@
-#The policy uses the tfplan import to enforce the usage of Terraform version from a minimal 
+#The policy uses the tfplan import to enforce the usage of Terraform version from a minimal
 
 import "tfplan/v2" as tfplan
 
 #Minimum allowed version variable
-param minimal_tf_version default "1.2"
+param minimal_tf_version default "1.4.0"
+param exempt_versions default ["1.3.10", "1.2.9"]
 violations = 0
 
 #Condition to check version
 if (tfplan.terraform_version < minimal_tf_version) {
-	violations = 1
-	print("You are using terraform version", tfplan.terraform_version, "which is outdated.Please use any version higher than or equal to", minimal_tf_version)
+	if tfplan.terraform_version not in exampted_versions {
+		violations = 1
+		print("You are using terraform version", tfplan.terraform_version, "which is outdated.Please use any version higher than or equal to", minimal_tf_version)
+	} else {
+		violations = 0
+		print("You are using terraform version", tfplan.terraform_version, "which is outdated.But you are in the exempted list:", exempt_versions, ".Please consider use any version higher than or equal to", minimal_tf_version)
+	}
 }
 
 #Main rule
