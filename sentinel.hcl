@@ -1,18 +1,18 @@
-module "tfplan-functions" {
+import "module" "tfplan-functions" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-sentinel-policies/main/common-functions/tfplan-functions/tfplan-functions.sentinel"
 }
 
 
-module "tfconfig-functions" {
+import "module" "tfconfig-functions" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-sentinel-policies/main/common-functions/tfconfig-functions/tfconfig-functions.sentinel"
 }
 
 
-module "tfstate-functions" {
+import "module" "tfstate-functions" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-sentinel-policies/main/common-functions/tfstate-functions/tfstate-functions.sentinel"
 }
 
-module "tfrun-functions" {
+import "module" "tfrun-functions" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-sentinel-policies/main/common-functions/tfrun-functions/tfrun-functions.sentinel"
 }
 
