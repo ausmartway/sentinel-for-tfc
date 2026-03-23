@@ -1,0 +1,71 @@
+terraform_version = "1.5.0"
+
+planned_values = {
+	"outputs":   {},
+	"resources": {},
+}
+
+variables = {}
+
+resource_changes = {
+	"tfe_variable.my-workspace-region": {
+		"address": "tfe_variable.my-workspace-region",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"category":     "terraform",
+				"description":  "The AWS region for this workspace",
+				"hcl":          false,
+				"id":           "var-abc123",
+				"key":          "region",
+				"sensitive":    false,
+				"value":        "us-east-1",
+				"workspace_id": "ws-abc123",
+			},
+			"after_unknown": {},
+			"before":        null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "my-workspace-region",
+		"provider_name":  "registry.terraform.io/hashicorp/tfe",
+		"type":           "tfe_variable",
+	},
+	"tfe_variable.my-workspace-env": {
+		"address": "tfe_variable.my-workspace-env",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"category":     "env",
+				"description":  "The environment name",
+				"hcl":          false,
+				"id":           "var-def456",
+				"key":          "TF_ENV",
+				"sensitive":    false,
+				"value":        "production",
+				"workspace_id": "ws-abc123",
+			},
+			"after_unknown": {},
+			"before":        null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "my-workspace-env",
+		"provider_name":  "registry.terraform.io/hashicorp/tfe",
+		"type":           "tfe_variable",
+	},
+}
+
+raw = {
+	"configuration": {
+		"provider_config": {},
+	},
+}

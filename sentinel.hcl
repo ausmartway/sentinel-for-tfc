@@ -44,6 +44,11 @@ policy "enforce-minimal-terraform-versions" {
     enforcement_level = "advisory"
 }
 
+policy "enforce-tfe-variables-must-have-description" {
+  source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/enforce-tfe-variables-must-have-description.sentinel"
+    enforcement_level = "advisory"
+}
+
 policy "disallow-assuming-tfe-ec2-iam-role" {
   source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/disallow-assuming-tfe-ec2-iam-role.sentinel"
     enforcement_level = "advisory"
