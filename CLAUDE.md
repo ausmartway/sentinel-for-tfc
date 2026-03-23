@@ -38,6 +38,8 @@ mocks/                       # Mock tfplan/v2 data (.sentinel files) used by tes
 - **Policies that check `tfe_*` resources** use `tfplan.resource_changes` (or the `tfplan-functions` helper). Policies that check **provider configuration** (AWS region, assume_role, etc.) use `tfplan.raw.configuration.provider_config`.
 - **Test file param syntax**: `param "name" { value = "..." }` — the bare `param { key = value }` block is only valid in policy files.
 - **Test module imports**: in `.hcl` test files use `module "name" { source = "..." }`, not `import "module" "name"` (that syntax is for policy `.sentinel` files only).
+- **`actions` is a list — use `contains`, not `in`**: `rc.change.actions` is `["create"]` (a list). `rc.change.actions in ["create","update"]` evaluates to `false` because `in` checks if the left operand is a member of the right collection — a list is never equal to a string element. Use `rc.change.actions contains "create" or rc.change.actions contains "update"` instead. **Known bug**: `enforce-well-known-envvariables-sensitive.sentinel` still uses the broken `in` pattern, meaning its actions filter never matches.
+- **Minimal mock structure**: mocks only need five top-level fields — `terraform_version`, `planned_values`, `variables`, `resource_changes`, and `raw`. The large historical mocks in `mocks/` are real plan captures; for new tests, create purpose-built minimal mocks like `mock-tfplan-v2-tfe-variable-with-description.sentinel`.
 - Policy file named `enforce-minimal-terraform-verions.sentinel` has a typo ("verions") — match this exact spelling in `sentinel.hcl` and the test directory name.
 - All policies use `enforcement_level = "advisory"` — violations warn but do not block applies.
 
