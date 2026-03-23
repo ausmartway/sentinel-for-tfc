@@ -1,5 +1,8 @@
 name: sentinel
 on: [push]
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   sentinel-test:
     runs-on: ubuntu-latest
