@@ -43,3 +43,19 @@ policy "enforce-minimal-terraform-versions" {
   source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/enforce-minimal-terraform-verions.sentinel"
     enforcement_level = "advisory"
 }
+
+policy "disallow-assuming-tfe-ec2-iam-role" {
+  source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/disallow-assuming-tfe-ec2-iam-role.sentinel"
+    enforcement_level = "advisory"
+    params = {
+      disallowed_role_arn = "arn:aws:iam::ACCOUNT_ID:role/ROLE_NAME"
+    }
+}
+
+policy "allow-aws-regions" {
+  source = "https://raw.githubusercontent.com/ausmartway/sentinel-for-tfc/main/allow-aws-regions.sentinel"
+    enforcement_level = "advisory"
+    params = {
+      allowed_aws_regions = ["ap-southeast-2", "us-east-1", "eu-west-1"]
+    }
+}

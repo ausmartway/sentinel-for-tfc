@@ -1,0 +1,35 @@
+# This policy disallows any AWS provider configuration from assuming a specific IAM role.
+# Supply the full ARN of the role to be blocked via the disallowed_role_arn parameter.
+
+import "tfplan/v2" as tfplan
+
+# Full ARN of the IAM role that must not be assumed by any AWS provider configuration.
+# Example: "arn:aws:iam::123456789012:role/tfe-instance-role"
+param disallowed_role_arn
+
+violations = 0
+
+# Iterate over all provider configurations, matching aws and aliased aws providers
+for tfplan.raw.configuration.provider_config as provider_name, provider_config {
+	if provider_name matches "^aws" {
+		exprs = provider_config.expressions else {}
+
+		if "assume_role" in keys(exprs) {
+			for exprs["assume_role"] as assume_role_block {
+				arn_expr = assume_role_block["role_arn"] else {}
+
+				if "constant_value" in keys(arn_expr) {
+					if arn_expr["constant_value"] is disallowed_role_arn {
+						violations += 1
+						print("AWS provider '" + provider_name + "' is configured to assume disallowed IAM role:", disallowed_role_arn)
+					}
+				}
+			}
+		}
+	}
+}
+
+# Main rule
+main = rule {
+	violations is 0
+}

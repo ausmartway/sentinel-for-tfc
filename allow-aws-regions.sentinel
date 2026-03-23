@@ -1,0 +1,34 @@
+# This policy restricts AWS provider configurations to an approved list of regions.
+# Supply the list of permitted regions via the allowed_aws_regions parameter.
+
+import "tfplan/v2" as tfplan
+
+# List of AWS regions that are permitted.
+# Example: ["ap-southeast-2", "us-east-1"]
+param allowed_aws_regions
+
+violations = 0
+
+for tfplan.raw.configuration.provider_config as provider_name, provider_config {
+	if provider_name matches "^aws" {
+		exprs = provider_config.expressions else {}
+
+		if "region" in keys(exprs) {
+			region_expr = exprs["region"]
+
+			if "constant_value" in keys(region_expr) {
+				region = region_expr["constant_value"]
+
+				if region not in allowed_aws_regions {
+					violations += 1
+					print("AWS provider '" + provider_name + "' uses region '" + region + "' which is not in the allowed list:", allowed_aws_regions)
+				}
+			}
+		}
+	}
+}
+
+# Main rule
+main = rule {
+	violations is 0
+}

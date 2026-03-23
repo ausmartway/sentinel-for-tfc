@@ -1,0 +1,30 @@
+terraform_version = "1.10.0"
+
+planned_values = {
+	"outputs":   {},
+	"resources": {},
+}
+
+variables = {}
+
+resource_changes = {}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"name": "aws",
+				"expressions": {
+					"region": {
+						"constant_value": "cn-north-1",
+					},
+				},
+			},
+		},
+		"root_module": {
+			"resources": [],
+		},
+	},
+}
